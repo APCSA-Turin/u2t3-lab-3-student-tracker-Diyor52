@@ -1,6 +1,13 @@
 package com.example.project;
 
 public class Student {
+    private String firstName;
+    private String lastName;
+    private int gradYear;
+    private double sumOfTestScores = 0.0;
+    private int TestScoreCount = 0;
+    private double highestTestScore = 0.0;
+
     // instance variables for 
     // first name (String)
     // last name (String)
@@ -12,39 +19,42 @@ public class Student {
     // constructor
     public Student(String firstName, String lastName, int gradYear) {
         //implement code here!
-
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gradYear = gradYear;
     }
  
     // returns firstName
     public String getFirstName() {
         //implement code here!
-        return "";
+        return firstName;
     }
  
     // returns lastName
     public String getLastName() {
         //implement code here!
-        return "";
+        return lastName;
     }
  
     public double getHighestTestScore() {
         //implement code here!
-        return 0.0;
+        return highestTestScore;
     }
 
     public int getTestScoreCount(){
         //implement code here!
-        return 0;
+        return TestScoreCount;
     }
 
     public int getGradYear(){
         //implement code here!
-        return 0;
+        return gradYear;
     }
  
     // sets gradYear to newGradYear
     public void setGradYear(int newGradYear) {
         //implement code here!
+        gradYear = newGradYear;
     }
  
     // adds newTestScore to accumulatedTestScores
@@ -52,31 +62,46 @@ public class Student {
     // set new highest test score 
     public void addTestScore(double newTestScore) {
         //implement code here!
+        sumOfTestScores += newTestScore;
+        TestScoreCount++;
+        if (newTestScore > highestTestScore){
+            highestTestScore = newTestScore;
+         }
     }
  
     // returns true if the student's average test score is greater
     // than or equal to 65; returns false otherwise (see Note 2 below)
     public boolean isPassing() {
         //implement code here!
-        return false;
+        averageTestScore();
+        if (averageTestScore() > 65) {
+            return true;
+        }
+        if (averageTestScore()==65){
+            return true;
+        }
+        else { 
+            return false;
+        }
+
     }
  
     // returns the Student's average test score as the
     // quotient of accumulatedTestScores and testScoreCount
     public double averageTestScore() {
         //implement code here!
-        return 0.0;
+        return  sumOfTestScores/TestScoreCount;
     }
  
     // this method prints all info of a Student object to the console 
     // I AM NOT TESTING YOU ON THIS METHOD. IT'S FOR YOUR TESTING PURPOSES ONLY.. you don't have to use it
     public void printStudentInfo() {
-        System.out.println("Student Full Name: " );
-        System.out.println("Graduation Year: ");
-        System.out.println("Number of tests: ");
-        System.out.println("Average Test Score: ");
-        System.out.println("Highest Test Score: ");
-        System.out.println("Is passing: ");
+        System.out.println("Student Full Name: " + firstName + " "  + lastName );
+        System.out.println("Graduation Year: " + gradYear);
+        System.out.println("Number of tests: " + TestScoreCount);
+        System.out.println("Average Test Score: " + averageTestScore());
+        System.out.println("Highest Test Score: " + highestTestScore);
+        System.out.println("Is passing: " + isPassing());
     }
  }
  
